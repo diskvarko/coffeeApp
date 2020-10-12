@@ -3,6 +3,8 @@ package com.example.android.coffeeapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import android.text.Editable;
@@ -10,9 +12,6 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-import java.text.NumberFormat;
-
-import static com.example.android.coffeeapp.R.id.name_field;
 
 public class MainActivity extends AppCompatActivity {
     int numberOfCoffee = 0;
@@ -23,33 +22,36 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void submitOrder(View view) {
-        // Figure out if the user wants chocolate topping
-        CheckBox chocolateCheckBox = (CheckBox) findViewById(R.id.checkBox);
+    public String finalOrder (){
+        CheckBox chocolateCheckBox = findViewById(R.id.checkBox);
         boolean hasChocolate = chocolateCheckBox.isChecked();
-        // show the final price
-        //displayPrice(calculatePrice(numberOfCoffee, hasChocolate));
+
 
         EditText nameField = (EditText) findViewById(R.id.name_field);
         Editable nameEditable = nameField.getText();
         String name = nameEditable.toString();
 
         int price = calculatePrice(numberOfCoffee, hasChocolate);
-
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(createOrderSummary(name, price, hasChocolate));
-//        // Figure out if the user wants chocolate topping
-//        CheckBox chocolateCheckBox = (CheckBox) findViewById(R.id.checkbox);
-//        boolean hasChocolate = chocolateCheckBox.isChecked();
-
-        // Calculate the price
-
-
-        // Display the order summary on the screen
-       // String message = createOrderSummary(name, price, hasChocolate);
-
+        return createOrderSummary(name, price, hasChocolate);
 
     }
+    public void submitOrder(View view) {
+        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
+        priceTextView.setText(finalOrder());
+
+    }
+
+
+    public void sendEmail(View view) {
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+        intent.putExtra(Intent.EXTRA_EMAIL, getString(R.string.order_summary_name));
+        intent.putExtra(Intent.EXTRA_SUBJECT, finalOrder());
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
+
     public void increment(View view){
         numberOfCoffee++;
         display(numberOfCoffee);
@@ -65,10 +67,7 @@ public class MainActivity extends AppCompatActivity {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + number);
     }
-//    private void displayPrice(int number) {
-//        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-//        priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
-//   }
+
     private int calculatePrice(int numberOfCoffee, boolean hasChocolate) {
         // First calculate the price of one cup of coffee
         int basePrice = 5;

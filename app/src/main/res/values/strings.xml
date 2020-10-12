@@ -17,4 +17,5 @@
     <string name="order_summary_price">TOTAL PRICE - </string>
     <string name="thank_you">Thank you!</string>
     <string name="order_summary">ORDER SUMMARY</string>
+    <string name="send_order">send order</string>
 </resources>
