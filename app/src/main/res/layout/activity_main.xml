@@ -23,7 +23,7 @@
                 android:layout_height="match_parent"
                 android:background="#FFE0B2"
                 android:contentDescription="@string/todo"
-                android:src="@drawable/abc_vector_test"
+                android:src="@android:drawable/ic_menu_send"
                 android:tint="#452C15"
                 tools:ignore="PrivateResource"
                 tools:src="@android:drawable/ic_menu_send" />
@@ -38,7 +38,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:textColor="#452C15"
                 android:textSize="30sp"
-                app:fontFamily="@font/pacifico" />
+                app:fontFamily="@font/nixie_one" />
         </LinearLayout>
 
 
@@ -49,28 +49,28 @@
             android:contentDescription="@string/todo"
             android:src="@drawable/imagee" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:gravity="center"
+            android:text="@string/coffee_is_always_good_idea"
+            android:textColor="#050505"
+            android:textColorHighlight="#000000"
+            android:textColorHint="#000000"
+            android:textColorLink="#0E0E0E"
+            app:fontFamily="@font/nixie_one" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#fcf2e8">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/coffee_is_always_good_idea"
-                android:textColor="#050505"
-                android:textColorHighlight="#000000"
-                android:textColorHint="#000000"
-                android:textColorLink="#0E0E0E"
-                app:fontFamily="@font/bungee_hairline" />
-
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="47dp"
             android:layout_weight="1"
             android:background="#fcf2e8"
             android:orientation="horizontal">
@@ -140,18 +140,19 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:paddingStart="24dp"
                 android:paddingLeft="24dp"
                 android:text="@string/order_summary"
                 android:textColor="#0E0101"
-                android:layout_gravity="center"
+                app:fontFamily="@font/nixie_one"
                 tools:ignore="RtlSymmetry" />
 
             <TextView
                 android:id="@+id/price_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
+                android:gravity="center"
                 android:text="@string/price_0"
                 android:textColor="#000000"
                 android:textSize="18sp" />
